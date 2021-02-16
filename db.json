@@ -11,12 +11,6 @@
       "day": "Feb 20th 2021, 9:00am",
       "reminder": false,
       "id": 2
-    },
-    {
-      "text": "Build a social media app",
-      "day": "March 21st 2021",
-      "reminder": true,
-      "id": 3
     }
   ]
 }
