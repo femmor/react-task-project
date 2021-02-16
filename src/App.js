@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTask from "./components/AddTask";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -6,30 +6,26 @@ import Tasks from "./components/Tasks";
 
 
 const App = () => {
-
+  
   const [showAddTask, setShowAddTask] = useState(false)
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Doctor's Appointment",
-      day: "Feb 5th at 2:30pm",
-      reminder: false
-    },
-    {
-      id: 2,
-      text: "Do Groceries",
-      day: "Feb 5th at 4:30pm",
-      reminder: true
-    },
-    {
-      id: 3,
-      text: "Pick up Reign",
-      day: "Feb 5th at 6:00pm",
-      reminder: true
-    },
-  ])
+  const [tasks, setTasks] = useState([])
 
-  // toggleForm
+  useEffect(() => {
+    const getTasks = async () => {
+       const tasksFromServer = await fetchTasks()
+       setTasks(tasksFromServer)
+    }
+
+    getTasks()
+  }, [])
+
+  // Fetch Tasks
+  const fetchTasks = async () => { 
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+
+    return data
+  }
 
   // Add Task
   const addTask = (task) => {

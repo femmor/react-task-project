@@ -1,4 +1,4 @@
-import React, {StyleSheet} from 'react'
+import React from 'react'
 import {FaTimes} from "react-icons/fa"
 
 const Task = ({ task, onDelete, onToggle }) => {
